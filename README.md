@@ -64,4 +64,7 @@ By modifying the scope of the oauth consent request, it should be possible to us
 
 ![image](https://user-images.githubusercontent.com/102549069/166071262-12bb51ce-8168-438b-9bf8-10074c33045b.png)
 
-3. While optimally the GET request to /oauthnum from Procedure Step 3 would wait for a value indefinitely, the miniapps chat window will crash if it recieves no response after ~9 seconds. Because of this, if no phone number is availble after ~8 seconds it will return the value "0" to miniapps.
+3. Optimally the GET request to /oauthnum from Procedure Step 3 should wait for a value indefinitely. Unfortunately the miniapps chat window will crash if it recieves no response after ~9 seconds. To avoid this, the web service will return "0" as the phone number if it's not availible in time. If MiniApps receives "0" it will reset the phoneNum field, causing the Flow to loop and initiate another GET request to /oauthnum. This allows it to wait for as long as the user needs to sign-in.
+
+![image](https://user-images.githubusercontent.com/102549069/166074376-f4982138-1fbe-4514-85f3-175c91283581.png)
+
