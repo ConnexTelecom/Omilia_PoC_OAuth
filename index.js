@@ -6,6 +6,7 @@ const url = require('url');
 const {google} = require('googleapis');
 const app = express();
 
+// Set port for ngrok
 const PORT=3000; 
 
 const MongoClient = require('mongodb').MongoClient; 
@@ -15,7 +16,7 @@ const mongoUrl = 'mongodb://127.0.0.1:27017';
 app.use(express.static('static'));
 var YOUR_CLIENT_ID = ""
 var YOUR_CLIENT_SECRET = ""
-var YOUR_REDIRECT_URL =                 // eg. "https://fddc-198-2-93-123.ngrok.io/oauth-callback"
+var YOUR_REDIRECT_URL = ""                 // eg. "https://fddc-198-2-93-123.ngrok.io/oauth-callback"
 var phoneNum;
 
 
