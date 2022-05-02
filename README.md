@@ -1,8 +1,8 @@
 # Omilia_PoC_OAuth
  
-This repo contains starter code for using OAuth 2.0 for authentication inside of OCP MiniApps. This is implemented via a Node.js web service that generates a Google consent screen and upon recieving permission, uses the resulting access-token to authenticate the user via their Google profile information.
+This repo contains starter code for using OAuth 2.0 for authentication inside of OCP MiniApps. This is implemented via a Node.js web service that generates a Google consent screen and upon receiving permission, uses the resulting access-token to authenticate the user via their Google profile information. A fair amount of configuration is required to get this working, please reach out to Devyn Dowler-Lewis (dlewis@connexservice.ca) if you have any questions or want a demo.
 
-Note that while some things, like request time-out durations, have been configured to work well with OCP MiniApps, nothing about this approach relies on unique features offered by OCP Miniapps. It should therefore be possible to implement something similar to this approach on other platforms.
+Note that while some things, like request time-out durations, have been configured to work well with OCP MiniApps, nothing about this approach relies on unique features offered by OCP MiniApps. It should therefore be possible to implement something similar to this approach on other platforms.
 
 ## Web Service Configuration
 
@@ -14,15 +14,15 @@ Note that while some things, like request time-out durations, have been configur
 
 3. Set up ngrok to allow MiniApps to access the web service, see the document "Omilia MiniApps Tutorial - Accessing Data.pdf" for details. 
 
-4. Update YOUR_REDIRECT_URL with your ngrok domain (eg."https://fddc-198-2-93-234.ngrok.io/oauth-callback"). Also add this as an "Authorized Redirect URI" in your Google Cloud Platform credentials configuration. 
+4. Update YOUR_REDIRECT_URL with your ngrok domain (eg."https://fddc-198-2-93-123.ngrok.io/oauth-callback"). Also add this as an "Authorized Redirect URI" in your Google Cloud Platform credentials configuration. 
 
 5. If you would like to set up the sample Mongodb database used for authentication in this example, the procedure is also detailed in the pdf from step 3. Most of the code related to this in index.js is copied from the appendix of this pdf.
 
 ## OCP MiniApps Configuration
 
-The Accompanying OCP MiniApps application is "TeemingDatabaseTesting" in the dlewis group.
+The Accompanying OCP MiniApps application is "TeemingDatabaseTesting" in the dlewis group. (Will be moved to Connex Group soon to allow access)
 
-If you're testing or modifying this project, simply update the "domain" value in the Set Field block at the start of the main application flow to your web service domain. If you want to integrate OAuth 2.0 with another project please see the Additional Details section for tips regarding the OCP implementation.
+If you're testing or modifying this project update the "domain" value in the Set Field block at the start of the main application flow to your web service domain. If you want to integrate OAuth 2.0 with another project the Additional Details Section may be helpful.
 
 ## Procedure and Explanation
 
@@ -60,11 +60,9 @@ By modifying the scope of the oauth consent request, it should be possible to us
 
     `<a href="#" onClick="MyWindow=window.open('{{extValue1}}', 'MyWindow','width=600,height=600'); return false;">Click To Sign-In To Google</a>`
     
-2. If you're using ngrok I recommend passing the domain as a variable to all of your web service miniapps so you don't have to manually edit every web service miniapp everytime you restart ngrok. It's passed as extValue10 below.
+2. If you're using ngrok I recommend passing the domain as a variable to all of your web service miniapps so you don't have to manually edit every web service MiniApp every time you restart ngrok. It's passed as extValue10 below.
 
 ![image](https://user-images.githubusercontent.com/102549069/166071262-12bb51ce-8168-438b-9bf8-10074c33045b.png)
 
-3. Optimally the GET request to /oauthnum from Procedure Step 3 should wait for a value indefinitely. Unfortunately the miniapps chat window will crash if it recieves no response after ~9 seconds. To avoid this, the web service will return "0" as the phone number if it's not availible in time. If MiniApps receives "0" it will reset the phoneNum field, causing the Flow to loop and initiate another GET request to /oauthnum. This allows it to wait for as long as the user needs to sign-in.
-
-![image](https://user-images.githubusercontent.com/102549069/166074376-f4982138-1fbe-4514-85f3-175c91283581.png)
+3. The GET request to /oauthnum from Procedure Step 3 should wait for a value indefinitely. Unfortunately the MiniApps chat window will crash if it receives no response after ~ 10 seconds. To avoid this, the web service will return "0" as the phone number if it's not available in time. If MiniApps receives "0" it will reset the phoneNum field, initiating another GET request to /oauthnum. This allows it to wait for as long as the user needs to sign-in. The related flow is "OAuth_WaitForNum", general information on looping flows like this in OCP Miniapps can be found [here.](https://connextelecom.sharepoint.com/:w:/s/AdvancedServicesTeam770/ESjq6c7XQolFvbQA1aaP6Z0Bp5hJUrRGfomsqr3pFxyuTQ)
 
