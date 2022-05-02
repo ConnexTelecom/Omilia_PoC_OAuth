@@ -13,9 +13,9 @@ const mongoUrl = 'mongodb://127.0.0.1:27017';
 
 // Set GCP Project OAUTH Variables
 app.use(express.static('static'));
-var YOUR_CLIENT_ID = "286283450358-3j74ran3ckabhagf76ikmrpbq77dmrqb.apps.googleusercontent.com"
-var YOUR_CLIENT_SECRET = "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"
-var YOUR_REDIRECT_URL = "https://fddc-198-2-93-234.ngrok.io/oauth-callback"
+var YOUR_CLIENT_ID = ""
+var YOUR_CLIENT_SECRET = ""
+var YOUR_REDIRECT_URL =                 // eg. "https://fddc-198-2-93-123.ngrok.io/oauth-callback"
 var phoneNum;
 
 
