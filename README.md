@@ -10,7 +10,7 @@ Note that while some things, like request time-out durations, have been configur
 
         npm install
         
-2. [Follow this guide](https://developers.google.com/identity/protocols/oauth2/web-server#httprest_3) to create OAuth 2.0 authorization credentials. This will provide the values for YOUR_CLIENT_ID and YOUR_CLIENT_SECRET. This guide also discusses how to change the scope of the request.
+2. [Follow this guide](https://developers.google.com/identity/protocols/oauth2/web-server#httprest_3) to create OAuth 2.0 authorization credentials. This will provide the values for YOUR_CLIENT_ID and YOUR_CLIENT_SECRET. This guide also discusses how to change the scope of the request, add authorized google accounts for testing, and configure the allowed redirect urls.
 
 3. Set up ngrok to allow MiniApps to access the web service, see the document "Omilia MiniApps Tutorial - Accessing Data.pdf" for details. 
 
@@ -56,7 +56,7 @@ By modifying the scope of the oauth consent request, it should be possible to us
 
 ## Additional Details
 
-1. To open the consent screen url as a popup copy-paste the following HTML tag into an announcement MiniApp and pass the Google consent screen url as extValue1.
+1. To open the consent screen url as a popup, copy-paste the following HTML tag into an announcement MiniApp and pass the Google consent screen url as extValue1.
 
     `<a href="#" onClick="MyWindow=window.open('{{extValue1}}', 'MyWindow','width=600,height=600'); return false;">Click To Sign-In To Google</a>`
     
