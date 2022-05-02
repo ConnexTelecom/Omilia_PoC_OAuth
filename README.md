@@ -30,6 +30,8 @@ If you're testing or modifying this project update the "domain" value in the Set
 
 The procedure below is specific to the Streamline Vacation Rentals demo project where authentication is accomplished by obtaining the user's phone number and using it to query a database for their reservation information. Therefore, this procedure details using OAuth 2.0 to obtain a phone number from a google profile. 
 
+For this specific approach to work, the phone number must be in the ["Contact Info"](https://myaccount.google.com/profile) section of the user's google account.  
+
 By modifying the scope of the oauth consent request, it should be possible to use the same rough procedure to access user information from any Google API.
 
 ### Steps:
