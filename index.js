@@ -12,6 +12,21 @@ const PORT=3000;
 const MongoClient = require('mongodb').MongoClient; 
 const mongoUrl = 'mongodb://127.0.0.1:27017'; 
 
+//Connect to MongoDB To Host Testing Reservation Info Database
+MongoClient.connect(mongoUrl, { 
+  useNewUrlParser: true, 
+  useUnifiedTopology: true 
+}, (err, client) => { 
+  if (err) { 
+      return console.log(err); 
+  }
+
+  // Specify database you want to access 
+  const db = client.db('testDB'); 
+  console.log(`MongoDB Connected: ${mongoUrl}`); 
+  
+  const users = db.collection('users');
+
 // Set GCP Project OAUTH Variables
 app.use(express.static('static'));
 var YOUR_CLIENT_ID = ""
@@ -44,21 +59,6 @@ const authorizationUrl = oauth2Client.generateAuthUrl({
   include_granted_scopes: true
 });
 //console.log(authorizationUrl)
-
-//Connect to MongoDB To Host Testing Reservation-Info Database
-MongoClient.connect(mongoUrl, { 
-  useNewUrlParser: true, 
-  useUnifiedTopology: true 
-}, (err, client) => { 
-  if (err) { 
-      return console.log(err); 
-  }
-
-  // Specify database you want to access 
-  const db = client.db('testDB'); 
-  console.log(`MongoDB Connected: ${mongoUrl}`); 
-  
-  const users = db.collection('users');
   
   app.listen(PORT, () => console.log(`API Connected on localhost:${PORT}`)) 
   
@@ -150,7 +150,7 @@ MongoClient.connect(mongoUrl, {
   })
 
 
-  //Get All Users 
+  //Get All Users (Not Currently Used For Anything)
   app.get("/usersList", (req, res) => { 
       console.log(req.body) 
       users.find().toArray((err, result) => { 
