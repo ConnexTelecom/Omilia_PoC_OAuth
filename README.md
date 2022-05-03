@@ -1,6 +1,6 @@
 # Omilia_PoC_OAuth
  
-This repo contains starter code for using OAuth 2.0 for authentication inside of OCP MiniApps. This is implemented via a Node.js web service that generates a Google consent screen and upon receiving permission, uses the resulting access-token to authenticate the user via their Google profile information. Please reach out to Devyn Dowler-Lewis (dlewis@connexservice.ca) if you have any questions or want a demo.
+This repo contains starter code for using OAuth 2.0 for authentication inside of OCP MiniApps. This is implemented via a Node.js web service (index.js) that generates a Google consent screen and upon receiving permission, uses the resulting access-token to authenticate the user via their Google profile information. Please reach out to Devyn Dowler-Lewis (dlewis@connexservice.ca) if you have any questions or want a demo.
 
 Note that while some things, like request time-out durations, have been configured to work well with OCP MiniApps, nothing about this approach relies on unique features offered by OCP MiniApps. It should therefore be possible to implement something similar to this approach on other platforms.
 
