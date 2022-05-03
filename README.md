@@ -12,7 +12,7 @@ Note that while some things, like request time-out durations, have been configur
         
 2. [Follow this guide](https://developers.google.com/identity/protocols/oauth2/web-server#httprest_3) to create OAuth 2.0 authorization credentials. This will provide the values for YOUR_CLIENT_ID and YOUR_CLIENT_SECRET. This guide also discusses how to change the scope of the request, add authorized google accounts for testing, and configure the allowed redirect urls.
 
-3. Set up ngrok to allow MiniApps to access the web service, see the document "Omilia MiniApps Tutorial - Accessing Data.pdf" for details. 
+3. Set up ngrok to allow MiniApps to access the web service, see the document "Omilia MiniApps Tutorial - Accessing Data.pdf" for details. Note that if possible a static domain is preferable to ngrok, as with ngrok the domain must be updated in the redirect url and MiniApps everytime it changes.
 
 4. Update YOUR_REDIRECT_URL with your ngrok domain (eg."https://fddc-198-2-93-123.ngrok.io/oauth-callback"). Also add this as an "Authorized Redirect URI" in your Google Cloud Platform credentials configuration. 
 
@@ -20,7 +20,7 @@ Note that while some things, like request time-out durations, have been configur
 
 ## OCP MiniApps Configuration
 
-The Accompanying OCP MiniApps application is "TeemingDatabaseTesting" in the dlewis group. (Will be moved to Connex Group soon to allow access)
+The Accompanying OCP MiniApps application is "TeemingDatabaseTesting" in the dlewis group. 
 
 If you're testing or modifying this project update the "domain" value in the Set Field block at the start of the main application flow to your web service domain. If you want to integrate OAuth 2.0 with another project the Additional Details Section may be helpful.
 
